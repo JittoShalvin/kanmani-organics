@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 45 30% 97%;
+    --foreground: 140 70% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 140 70% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 140 70% 15%;
+
+    --primary: 140 65% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 85 40% 92%;
+    --secondary-foreground: 140 70% 15%;
+
+    --muted: 85 30% 95%;
+    --muted-foreground: 140 25% 45%;
+
+    --accent: 45 85% 55%;
+    --accent-foreground: 140 70% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 85 30% 88%;
+    --input: 85 30% 88%;
+    --ring: 140 65% 35%;
+
+    --radius: 0.75rem;
+
+    /* Organic gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(140 65% 35%) 0%, hsl(150 60% 45%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(85 40% 98%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(45 85% 55%) 0%, hsl(35 80% 60%) 100%);
+    
+    /* Organic shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(140 50% 35% / 0.15);
+    --shadow-hover: 0 8px 30px -6px hsl(140 50% 35% / 0.25);
+    --shadow-3d: 0 20px 40px -15px hsl(140 50% 25% / 0.3);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* 3D perspective */
+    --perspective: 1000px;
+  }
+
+  .dark {
+    --background: 140 30% 8%;
+    --foreground: 85 30% 95%;
+
+    --card: 140 25% 12%;
+    --card-foreground: 85 30% 95%;
+
+    --popover: 140 25% 12%;
+    --popover-foreground: 85 30% 95%;
+
+    --primary: 140 55% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 140 20% 18%;
+    --secondary-foreground: 85 30% 95%;
+
+    --muted: 140 20% 18%;
+    --muted-foreground: 85 20% 65%;
+
+    --accent: 45 75% 50%;
+    --accent-foreground: 140 70% 15%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 140 20% 18%;
+    --input: 140 20% 18%;
+    --ring: 140 55% 45%;
+    
+    --shadow-3d: 0 20px 40px -15px hsl(140 50% 15% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* 3D Card Effect */
+  .card-3d {
+    transition: all 0.3s ease;
+  }
+  
+  .card-3d-inner {
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .card-3d:hover .card-3d-inner {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-3d);
+  }
+  
+  /* Floating Animation */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotateX(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotateX(2deg);
+    }
+  }
+  
+  /* 3D Tilt Effect */
+  .tilt-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+  }
+  
+  .tilt-3d:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) scale(1.02);
+  }
+  
+  /* Depth Shadow */
+  .shadow-depth {
+    box-shadow: 
+      0 2px 4px hsl(140 50% 35% / 0.1),
+      0 8px 16px hsl(140 50% 35% / 0.1),
+      0 16px 32px hsl(140 50% 35% / 0.15);
+  }
+  
+  /* Parallax layers */
+  .parallax-container {
+    perspective: 1px;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  .parallax-layer {
+    transform-style: preserve-3d;
+  }
+  
+  /* Glow effect */
+  .glow-primary {
+    box-shadow: 0 0 30px hsl(140 65% 35% / 0.4);
+  }
+  
+  /* 3D Button */
+  .btn-3d {
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 
+      0 4px 0 hsl(140 65% 25%),
+      0 6px 20px hsl(140 50% 35% / 0.2);
+  }
+  
+  .btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+      0 6px 0 hsl(140 65% 25%),
+      0 10px 30px hsl(140 50% 35% / 0.3);
+  }
+  
+  .btn-3d:active {
+    transform: translateY(2px);
+    box-shadow: 
+      0 2px 0 hsl(140 65% 25%),
+      0 4px 10px hsl(140 50% 35% / 0.1);
+  }
+  
+  /* Rotating leaf animation */
+  .leaf-rotate {
+    animation: leafRotate 20s linear infinite;
+  }
+  
+  @keyframes leafRotate {
+    0% {
+      transform: rotate(0deg) scale(1);
+    }
+    50% {
+      transform: rotate(180deg) scale(1.1);
+    }
+    100% {
+      transform: rotate(360deg) scale(1);
+    }
+  }
+  
+  /* Shimmer effect */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(0 0% 100% / 0.3) 50%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}

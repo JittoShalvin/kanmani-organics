@@ -1,0 +1,96 @@
+import { Droplet, Leaf } from "lucide-react";
+import oilImage from "@/assets/All Product New.jpg";
+import puttuImage from "@/assets/product-puttu.jpg";
+import oilsVarietyImage from "@/assets/product-oils-variety.jpg";
+
+export const products = [
+  {
+    id: 1,
+    name: "Cold-Pressed Coconut Oil",
+    description: "Pure, unrefined coconut oil extracted using traditional methods",
+    fullDescription: "Our cold-pressed coconut oil is extracted using traditional wooden chekku (cold press) method, preserving all natural nutrients and authentic flavor. This pure, unrefined oil is rich in MCTs (Medium Chain Triglycerides) and lauric acid, making it perfect for cooking, skin care, and hair care. No chemicals, no preservatives - just pure coconut goodness.",
+    features: ["100% Natural", "No Preservatives", "Rich in MCT"],
+    benefits: ["Boosts immunity", "Improves digestion", "Nourishes skin & hair", "High smoke point for cooking"],
+    usage: "Ideal for daily cooking, oil pulling, skin moisturizing, and hair conditioning.",
+    sizes: ["500ml", "1L", "5L"],
+    image: oilImage,
+    icon: Droplet,
+    category: "oils",
+    link: "ww.google.com",
+  },
+
+  {
+    id: 2,
+    name: "Traditional Puttu Mix",
+    description: "Authentic South Indian breakfast mix made from natural rice and coconut",
+    fullDescription: "Our traditional puttu mix is crafted from the finest natural rice, stone-ground to perfection. Combined with fresh coconut, this mix brings the authentic taste of South Indian homes to your breakfast table. Simply add water, steam, and enjoy the fluffy, aromatic puttu just like grandma used to make.",
+    features: ["Natural Rice", "Fresh Coconut", "Traditional Recipe"],
+    benefits: ["Rich in fiber", "Easy to digest", "No artificial additives", "Quick preparation"],
+    usage: "Mix with water, layer with coconut, and steam in a puttu maker for 5-7 minutes.",
+    sizes: ["500g", "1kg"],
+    image: puttuImage,
+    icon: Leaf,
+    category: "puttu",
+    link: "www.google.com",
+  },
+  {
+    id: 3,
+    name: "Organic Oil Varieties",
+    description: "Premium selection of sesame, groundnut, and coconut oils",
+    fullDescription: "Experience our premium collection of cold-pressed organic oils. Each variety is carefully extracted to preserve maximum nutrition and authentic flavor. Choose from pure sesame oil for its nutty aroma, groundnut oil for high-heat cooking, or our signature coconut oil for versatile use.",
+    features: ["Cold Pressed", "Chemical Free", "Nutrient Rich"],
+    benefits: ["Heart-healthy fats", "Rich in antioxidants", "Authentic taste", "Long shelf life"],
+    usage: "Use sesame oil for stir-frying, groundnut oil for deep frying, and coconut oil for everyday cooking.",
+    sizes: ["500ml", "1L", "2L"],
+    image: oilsVarietyImage,
+    icon: Droplet,
+    category: "oils",
+    link: "www.google.com",
+  },
+  {
+    id: 4,
+    name: "Pure Sesame Oil",
+    description: "Traditional gingelly oil with rich nutty flavor",
+    fullDescription: "Our pure sesame oil (gingelly oil) is extracted from carefully selected sesame seeds using the traditional cold-press method. Known for its distinct nutty flavor and aroma, this oil is a staple in South Indian cuisine. Rich in natural antioxidants, it's perfect for tempering, cooking, and traditional medicine preparations.",
+    features: ["Cold Pressed", "Pure Sesame", "Traditional Method"],
+    benefits: ["Rich in Vitamin E", "Anti-inflammatory", "Promotes heart health", "Natural preservative"],
+    usage: "Perfect for tempering dals, preparing chutneys, and Ayurvedic oil massages.",
+    sizes: ["250ml", "500ml", "1L"],
+    image: oilImage,
+    icon: Droplet,
+    category: "oils",
+    link: "www.google.com",
+  },
+  {
+    id: 5,
+    name: "Groundnut Oil",
+    description: "Premium cold-pressed peanut oil for healthy cooking",
+    fullDescription: "Our groundnut oil is cold-pressed from premium quality peanuts, retaining all the natural goodness and authentic flavor. With a high smoke point and neutral taste, it's ideal for deep frying, sautéing, and everyday cooking. This heart-healthy oil is rich in monounsaturated fats and vitamin E.",
+    features: ["High Smoke Point", "Heart Healthy", "Versatile Use"],
+    benefits: ["Good for heart", "High in vitamin E", "Suitable for frying", "Enhances food flavor"],
+    usage: "Excellent for deep frying snacks, preparing curries, and making pickles.",
+    sizes: ["500ml", "1L", "5L"],
+    image: oilsVarietyImage,
+    icon: Droplet,
+    category: "oils",
+    link: "www.google.com",
+  },
+  {
+    id: 6,
+    name: "Rice Flour Puttu Mix",
+    description: "Fine rice flour blend for soft and fluffy puttu",
+    fullDescription: "Our premium rice flour puttu mix is made from aged rice, carefully milled to achieve the perfect texture. This special blend ensures your puttu comes out soft, fluffy, and non-sticky every time. A breakfast staple that pairs perfectly with banana, chickpea curry, or sugar.",
+    features: ["Aged Rice", "Fine Texture", "Easy Preparation"],
+    benefits: ["Gluten-free", "Light and digestible", "Quick cooking", "Authentic taste"],
+    usage: "Sprinkle water, mix well, layer with coconut in puttu maker, and steam for 5 minutes.",
+    sizes: ["500g", "1kg", "2kg"],
+    image: puttuImage,
+    icon: Leaf,
+    category: "puttu",
+    link: "www.google.com",
+  },
+];
+
+export type Product = typeof products[0] & {
+  visible?: boolean;
+};

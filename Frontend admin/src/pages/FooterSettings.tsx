@@ -12,8 +12,10 @@ import {
   Video
 } from 'lucide-react';
 import api from '../api';
+import { useConfirm } from '../context/ConfirmContext';
 
 const FooterSettings = () => {
+    const { alert } = useConfirm();
     const [settings, setSettings] = useState({
         facebook_url: '',
         instagram_url: '',
@@ -58,7 +60,7 @@ const FooterSettings = () => {
             setSuccess(true);
             setTimeout(() => setSuccess(false), 3000);
         } catch (err) {
-            alert('Failed to save social links');
+            alert('Failed to save social links', { type: 'error' });
         } finally {
             setSaving(false);
         }

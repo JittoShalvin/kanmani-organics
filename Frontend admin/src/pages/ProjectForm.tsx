@@ -15,12 +15,14 @@ import {
 } from 'lucide-react';
 import api from '../api';
 import type { Project } from '../types/index';
+import { useConfirm } from '../context/ConfirmContext';
 
 interface ProjectFormProps {
   isEdit?: boolean;
 }
 
 const ProjectForm: React.FC<ProjectFormProps> = ({ isEdit }) => {
+  const { alert } = useConfirm();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [project, setProject] = useState<Partial<Project>>({
@@ -108,7 +110,7 @@ const ProjectForm: React.FC<ProjectFormProps> = ({ isEdit }) => {
       }
       navigate('/products');
     } catch (err) {
-      alert('Failed to save product');
+      alert('Failed to save product', { type: 'error' });
     } finally {
       setLoading(false);
     }

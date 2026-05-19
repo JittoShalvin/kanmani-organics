@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Settings, User, Save, ChevronRight, Loader2, PlusCircle } from 'lucide-react';
 import api from '../api';
 import type { UserData } from '../types/index';
+import { useConfirm } from '../context/ConfirmContext';
 
 interface AdminProfileProps {
   user: UserData;
@@ -10,6 +11,7 @@ interface AdminProfileProps {
 }
 
 const AdminProfile: React.FC<AdminProfileProps> = ({ user, refreshUser }) => {
+  const { alert } = useConfirm();
   const [formData, setFormData] = useState({
     username: user.username,
     email: user.email,
@@ -38,7 +40,7 @@ const AdminProfile: React.FC<AdminProfileProps> = ({ user, refreshUser }) => {
       refreshUser();
       setTimeout(() => setSuccess(false), 5000);
     } catch (err) {
-      alert('Update failed');
+      alert('Update failed', { type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -53,7 +55,7 @@ const AdminProfile: React.FC<AdminProfileProps> = ({ user, refreshUser }) => {
       setNewAdmin({ username: '', email: '', name: '', password: '' });
       setTimeout(() => setCreateSuccess(false), 5000);
     } catch (err) {
-      alert('Failed to create admin');
+      alert('Failed to create admin', { type: 'error' });
     } finally {
       setCreating(false);
     }

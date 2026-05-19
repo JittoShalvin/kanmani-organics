@@ -43,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, logout }) => {
       {/* Mobile Top Bar */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-md border-b border-border z-40 flex items-center justify-between px-6">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-hero rounded-lg flex items-center justify-center text-white font-bold">K</div>
+          <img src="/cropped_circle_image.png" className="w-8 h-8 object-contain" alt="Kanmani Logo" />
           <span className="font-bold text-foreground">Kanmani Admin</span>
         </div>
         <button onClick={logout} className="p-2 text-muted-foreground hover:text-destructive transition-colors">
@@ -55,7 +55,7 @@ const Sidebar: React.FC<SidebarProps> = ({ user, logout }) => {
       <aside className="hidden lg:flex fixed left-0 top-0 bottom-0 w-72 bg-white border-r border-border flex-col z-50">
         <div className="p-8">
           <Link to="/" className="flex items-center gap-3 mb-10">
-            <div className="w-12 h-12 bg-gradient-hero rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-depth">K</div>
+            <img src="/cropped_circle_image.png" className="w-12 h-12 object-contain" alt="Kanmani Logo" />
             <div>
               <span className="text-xl font-bold text-foreground block leading-none">Kanmani</span>
               <span className="text-xs font-bold text-primary uppercase tracking-widest">Admin Panel</span>

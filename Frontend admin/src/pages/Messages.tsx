@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, Trash2, CheckCircle, Clock, User, MessageSquare, Loader2, Search, Filter, AlertCircle } from 'lucide-react';
 import api from '../api';
+import { useConfirm } from '../context/ConfirmContext';
 
 interface ContactMessage {
   _id: string;
@@ -14,6 +15,7 @@ interface ContactMessage {
 }
 
 const Messages = () => {
+  const { confirm, alert } = useConfirm();
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -42,17 +44,18 @@ const Messages = () => {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
-      alert('Failed to update message status');
+      alert('Failed to update message status', { type: 'error' });
     }
   };
 
   const deleteMessage = async (id: string) => {
-    if (!window.confirm('Are you sure you want to delete this message?')) return;
+    const isConfirmed = await confirm('Are you sure you want to delete this message?');
+    if (!isConfirmed) return;
     try {
       await api.delete(`/messages/${id}`);
       setMessages(messages.filter(m => m._id !== id));
     } catch (err) {
-      alert('Failed to delete message');
+      alert('Failed to delete message', { type: 'error' });
     }
   };
 

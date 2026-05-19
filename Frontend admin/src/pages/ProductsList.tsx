@@ -26,8 +26,10 @@ import {
 } from 'lucide-react';
 import api from '../api';
 import type { Project } from '../types/index';
+import { useConfirm } from '../context/ConfirmContext';
 
 const ProductsList = () => {
+  const { confirm, alert } = useConfirm();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -72,22 +74,24 @@ const ProductsList = () => {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
-      alert('Failed to save setting');
+      alert('Failed to save setting', { type: 'error' });
     }
   };
 
   const deleteProject = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this product?')) return;
+    const isConfirmed = await confirm('Are you sure you want to delete this product?');
+    if (!isConfirmed) return;
     try {
       await api.delete(`/projects/${id}`);
       setProjects(projects.filter(p => p.id !== id));
     } catch (err) {
-      alert('Failed to delete');
+      alert('Failed to delete product', { type: 'error' });
     }
   };
 
   const duplicateProject = async (project: Project) => {
-    if (!confirm(`Duplicate "${project.name}"?`)) return;
+    const isConfirmed = await confirm(`Duplicate "${project.name}"?`);
+    if (!isConfirmed) return;
     setLoading(true);
     try {
       const formData = new FormData();
@@ -106,7 +110,7 @@ const ProductsList = () => {
       await api.post('/projects', formData);
       fetchProjects();
     } catch (err) {
-      alert('Failed to duplicate');
+      alert('Failed to duplicate product', { type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -137,7 +141,7 @@ const ProductsList = () => {
       setProjects(newProjects); // Optimistic UI update
       await api.post('/projects/reorder', { ids });
     } catch (err) {
-      alert('Failed to reorder products');
+      alert('Failed to reorder products', { type: 'error' });
       fetchProjects(); // Revert if failed
     }
   };
@@ -150,7 +154,7 @@ const ProductsList = () => {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 2000);
     } catch (err) {
-      alert('Failed to update product visibility');
+      alert('Failed to update product visibility', { type: 'error' });
     }
   };
 

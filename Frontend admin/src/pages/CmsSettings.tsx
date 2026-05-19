@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Save, FileText, Loader2, CheckCircle, Image as ImageIcon, Plus, Trash2, Layout, ArrowLeft, Pencil, ChevronRight, ArrowUp, ArrowDown, Eye, EyeOff } from 'lucide-react';
 import api from '../api';
+import { useConfirm } from '../context/ConfirmContext';
 
 interface HeroSlide {
     id: string;
@@ -13,6 +14,7 @@ interface HeroSlide {
 }
 
 const CmsSettings = () => {
+    const { confirm, alert } = useConfirm();
     const [settings, setSettings] = useState({
         hero_slides: [] as HeroSlide[],
         hero_visible: 'true'
@@ -55,7 +57,7 @@ const CmsSettings = () => {
             setTimeout(() => setSuccess(false), 3000);
             return true;
         } catch (err) {
-            alert('Failed to save setting');
+            alert('Failed to save setting', { type: 'error' });
             return false;
         } finally {
             setSaving(false);
@@ -72,7 +74,7 @@ const CmsSettings = () => {
             setSuccess(true);
             setTimeout(() => setSuccess(false), 2000);
         } catch (err) {
-            alert('Failed to update visibility');
+            alert('Failed to update visibility', { type: 'error' });
         } finally {
             setSaving(false);
         }
@@ -101,7 +103,7 @@ const CmsSettings = () => {
             const res = await api.post('/settings/upload', formData);
             setActiveSlide({ ...activeSlide, image: res.data.url });
         } catch (err) {
-            alert('Image upload failed');
+            alert('Image upload failed', { type: 'error' });
         } finally {
             setSaving(false);
         }
@@ -128,7 +130,8 @@ const CmsSettings = () => {
 
     const removeSlide = async (id: string, e: React.MouseEvent) => {
         e.stopPropagation();
-        if (!window.confirm('Delete this slide?')) return;
+        const isConfirmed = await confirm('Delete this slide?');
+        if (!isConfirmed) return;
 
         const newSlides = settings.hero_slides.filter(s => s.id !== id);
         const success = await handleSave('hero_slides', newSlides);

@@ -43,9 +43,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
           <div className="flex flex-col items-center md:items-start">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-primary-foreground/10 rounded-full flex items-center justify-center">
-                <Leaf className="w-6 h-6" />
-              </div>
+              <img src="/cropped_circle_image.png" className="w-10 h-10 object-contain bg-white rounded-full p-0.5" alt="Kanmani Organics Logo" />
               <span className="font-display text-xl font-bold text-white">
                 Kanmani Organics
               </span>

@@ -11,9 +11,8 @@
 }
 
 .shimmer-text {
-  background: linear-gradient(90deg, #333 0%, #888 50%, #333 100%);
+  background: linear-gradient(90deg, #333 0%, #888 50%, #d59f9f 100%);
   background-size: 200% 100%;
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s infinite linear;
 }

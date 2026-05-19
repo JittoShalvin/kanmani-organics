@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Save, Loader2, CheckCircle, Info, Heart, Leaf, Truck, Award, Phone, Mail, MapPin, Pencil, Lock, Unlock, X } from 'lucide-react';
 import api from '../api';
+import { useConfirm } from '../context/ConfirmContext';
 
 const AboutSettings = () => {
+    const { alert } = useConfirm();
     const [settings, setSettings] = useState({
         about_title: 'Tradition Meets Purity',
         about_description_1: 'At Kanmani Organics, we specialize in cold-pressed organic oils and traditional puttu products. Our commitment is to deliver authentic, chemical-free products that honor traditional methods while ensuring the highest quality standards.',
@@ -74,7 +76,7 @@ const AboutSettings = () => {
             setSuccess(true);
             setTimeout(() => setSuccess(false), 3000);
         } catch (err) {
-            alert('Failed to save settings');
+            alert('Failed to save settings', { type: 'error' });
         } finally {
             setSaving(false);
         }
